@@ -1,0 +1,14 @@
+github.com/chsc/gogl v0.0.0-20131111203533-c411acc846b6 h1:GHNbGLo1VfjsT+Lf7i1beWEvSHbN/GIi7pzkWAnL2zk=
+github.com/chsc/gogl v0.0.0-20131111203533-c411acc846b6/go.mod h1:82yD5XkINXAhjoaZjStP4a8vZSO3c7aAWQS3OJtBg+s=
+github.com/go-gfx/gl v0.0.0-20181026044259-55b76b7df9d2 h1:Jl1Nv3QGiFpSzDAxet2gyn/7EcBOmTyKqvH5VLTgBaI=
+github.com/go-gfx/gl v0.0.0-20181026044259-55b76b7df9d2/go.mod h1:oDTSRlgerFXOWyveaWZ56eUtUVqzUFySc1OvbhZBTv4=
+github.com/go-gfx/go-sdl2 v0.3.0 h1:kC0Wnz606YRDa79Ruba2Pq8srCV1X0tbMfo5PhPgm8E=
+github.com/go-gfx/go-sdl2 v0.3.0/go.mod h1:QWu/BGRIa8ALCG/hprTMG5lyywAVimM0tBYzK/xKzIA=
+github.com/go-gfx/gogl v0.0.0-20131111203533-c411acc846b6 h1:b7KYHsrfWqtimwP8p840cwA/i6U1aqjbGJJKo7REKyE=
+github.com/go-gfx/gogl v0.0.0-20131111203533-c411acc846b6/go.mod h1:A6maRk2bQN/aA/ODCQI0vonm9zO/8KFgCbR3QwrFseE=
+github.com/go-gl/gl v0.0.0-20180407155706-68e253793080 h1:pNxZva3052YM+z2p1aP08FgaTE2NzrRJZ5BHJCmKLzE=
+github.com/go-gl/gl v0.0.0-20180407155706-68e253793080/go.mod h1:482civXOzJJCPzJ4ZOX/pwvXBWSnzD4OKMdH4ClKGbk=
+github.com/malashin/go-sdl2 v0.0.0-20180501165632-f4b9ce451e14 h1:bb1cYP0jOvIWtb93Z8dQBVg+FiPGGGJd7/bm+1o2PlI=
+github.com/malashin/go-sdl2 v0.0.0-20180501165632-f4b9ce451e14/go.mod h1:ulRtxicVtJ9JfH1tDtH+mZgMi8XPQfwJLOQzz4PTlik=
+github.com/veandco/go-sdl2 v0.0.0-20180912100132-3dabe02ca25e h1:3DdVyr2rV2mkR7x2Qy8FPecEVBAsq/JVF8IQpm6eLLw=
+github.com/veandco/go-sdl2 v0.0.0-20180912100132-3dabe02ca25e/go.mod h1:FB+kTpX9YTE+urhYiClnRzpOXbiWgaU3+5F2AB78DPg=
