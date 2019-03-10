@@ -1,6 +1,15 @@
-**go-skia** is a Go skia package based on skia c library through cgo.
+**go-skia** is a Go skia package based on skia C library through cgo.
 
-The project is still in early stage.
+Note: the project is still in early stage.
+
+If your project supports Go modules, then the import path is `go101.org/go-skia`,
+and please remember add the following line in your `go.mod` file.
+
+```
+replace go101.org/go-skia => github.com/go-gfx/go-skia latest
+
+require go101.org/go-skia latest // this line is not needed for Go SDK 1.12+
+```
 
 The current skia libraries are built from skia C++ repository
 revision 8534723c7be1c079711d8bac45e93728d6524f8a, with the
