@@ -1,4 +1,6 @@
 /*
+ * Copyright 2019 Tapir Liu.
+ *
  * Copyright 2014 Google Inc.
  *
  * Use of this source code is governed by a BSD-style license that can be
@@ -21,6 +23,7 @@ SK_C_PLUS_PLUS_BEGIN_GUARD
     and clip are restored.
 */
 SK_API void sk_canvas_save(sk_canvas_t*);
+
 /**
     This behaves the same as sk_canvas_save(), but in addition it
     allocates an offscreen surface. All drawing calls are directed
@@ -38,6 +41,7 @@ SK_API void sk_canvas_save(sk_canvas_t*);
                        called.
 */
 SK_API void sk_canvas_save_layer(sk_canvas_t*, const sk_rect_t*, const sk_paint_t*);
+
 /**
     This call balances a previous call to sk_canvas_save() or
     sk_canvas_save_layer(), and is used to remove all modifications to
@@ -52,26 +56,31 @@ SK_API void sk_canvas_restore(sk_canvas_t*);
     specified translation.
 */
 SK_API void sk_canvas_translate(sk_canvas_t*, float dx, float dy);
+
 /**
     Preconcat the current coordinate transformation matrix with the
     specified scale.
 */
 SK_API void sk_canvas_scale(sk_canvas_t*, float sx, float sy);
+
 /**
     Preconcat the current coordinate transformation matrix with the
     specified rotation in degrees.
 */
 SK_API void sk_canvas_rotate_degrees(sk_canvas_t*, float degrees);
+
 /**
     Preconcat the current coordinate transformation matrix with the
     specified rotation in radians.
 */
 SK_API void sk_canvas_rotate_radians(sk_canvas_t*, float radians);
+
 /**
     Preconcat the current coordinate transformation matrix with the
     specified skew.
 */
 SK_API void sk_canvas_skew(sk_canvas_t*, float sx, float sy);
+
 /**
     Preconcat the current coordinate transformation matrix with the
     specified matrix.
@@ -84,6 +93,7 @@ SK_API void sk_canvas_concat(sk_canvas_t*, const sk_matrix_t*);
     rectange.
 */
 SK_API void sk_canvas_clip_rect(sk_canvas_t*, const sk_rect_t*);
+
 /**
     Modify the current clip with the specified path.  The new
     current clip will be the intersection of the old clip and the
@@ -96,27 +106,32 @@ SK_API void sk_canvas_clip_path(sk_canvas_t*, const sk_path_t*);
     specified paint.
 */
 SK_API void sk_canvas_draw_paint(sk_canvas_t*, const sk_paint_t*);
+
 /**
     Draw the specified rectangle using the specified paint. The
     rectangle will be filled or stroked based on the style in the
     paint.
 */
 SK_API void sk_canvas_draw_rect(sk_canvas_t*, const sk_rect_t*, const sk_paint_t*);
+
 /**
  *  Draw the circle centered at (cx, cy) with radius rad using the specified paint.
  *  The circle will be filled or framed based on the style in the paint
  */
 SK_API void sk_canvas_draw_circle(sk_canvas_t*, float cx, float cy, float rad, const sk_paint_t*);
+
 /**
     Draw the specified oval using the specified paint. The oval will be
     filled or framed based on the style in the paint
 */
 SK_API void sk_canvas_draw_oval(sk_canvas_t*, const sk_rect_t*, const sk_paint_t*);
+
 /**
     Draw the specified path using the specified paint. The path will be
     filled or framed based on the style in the paint
 */
 SK_API void sk_canvas_draw_path(sk_canvas_t*, const sk_path_t*, const sk_paint_t*);
+
 /**
     Draw the specified image, with its top/left corner at (x,y), using
     the specified paint, transformed by the current matrix.
@@ -125,6 +140,7 @@ SK_API void sk_canvas_draw_path(sk_canvas_t*, const sk_path_t*, const sk_paint_t
 */
 SK_API void sk_canvas_draw_image(sk_canvas_t*, const sk_image_t*,
                                  float x, float y, const sk_paint_t*);
+
 /**
     Draw the specified image, scaling and translating so that it fills
     the specified dst rect. If the src rect is non-null, only that

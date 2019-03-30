@@ -1,4 +1,6 @@
 /*
+ * Copyright 2019 Tapir Liu.
+ *
  * Copyright 2014 Google Inc.
  *
  * Use of this source code is governed by a BSD-style license that can be
@@ -20,6 +22,7 @@ SK_C_PLUS_PLUS_BEGIN_GUARD
     released with a call to sk_picture_recorder_delete().
 */
 sk_picture_recorder_t* sk_picture_recorder_new(void);
+
 /**
     Release the memory and other resources used by this
     sk_picture_recorder_t.
@@ -34,6 +37,7 @@ void sk_picture_recorder_delete(sk_picture_recorder_t*);
                      rect is undefined, and may be drawn or it may not.
 */
 sk_canvas_t* sk_picture_recorder_begin_recording(sk_picture_recorder_t*, const sk_rect_t*);
+
 /**
     Signal that the caller is done recording. This invalidates the
     canvas returned by begin_recording. Ownership of the sk_picture_t
@@ -47,6 +51,7 @@ sk_picture_t* sk_picture_recorder_end_recording(sk_picture_recorder_t*);
     balanced by a call to sk_picture_unref().
 */
 void sk_picture_ref(sk_picture_t*);
+
 /**
     Decrement the reference count. If the reference count is 1 before
     the decrement, then release both the memory holding the

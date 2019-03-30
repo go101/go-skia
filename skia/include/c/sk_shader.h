@@ -1,4 +1,6 @@
 /*
+ * Copyright 2019 Tapir Liu.
+ *
  * Copyright 2014 Google Inc.
  *
  * Use of this source code is governed by a BSD-style license that can be
@@ -48,7 +50,6 @@ sk_shader_t* sk_shader_new_linear_gradient(const sk_point_t points[2],
                                            int colorCount,
                                            sk_shader_tilemode_t tileMode,
                                            const sk_matrix_t* localMatrix);
-
 
 /**
     Returns a shader that generates a radial gradient given the center
