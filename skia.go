@@ -26,8 +26,14 @@ import "C"
 import (
 	"fmt"
 	"io"
+	"math"
 	"runtime"
 	"unsafe"
+)
+
+const (
+	radian2degrees = 180.0 / math.Pi
+	degree2radians = math.Pi / 180.0
 )
 
 // TODO(stephana): Add proper documentation to the types defined here.
@@ -114,6 +120,28 @@ type Canvas struct {
 	keepParentAlive *Surface
 }
 
+
+
+func (c *Canvas) Save() {
+	C.sk_canvas_save(c.ptr)
+}
+
+func (c *Canvas) Restore() {
+	C.sk_canvas_restore(c.ptr)
+}
+
+func (c *Canvas) Translate(dx, dy float64) {
+	C.sk_canvas_translate(c.ptr, C.float(dx), C.float(dy))
+}
+
+func (c *Canvas) Scale(sx, sy float64) {
+	C.sk_canvas_scale(c.ptr, C.float(sx), C.float(sy))
+}
+
+func (c *Canvas) Rotate(radians float64) {
+	C.sk_canvas_rotate_radians(c.ptr, C.float(radians))
+}
+
 func (c *Canvas) DrawPaint(paint *Paint) {
 	C.sk_canvas_draw_paint(c.ptr, paint.ptr)
 }
@@ -189,6 +217,19 @@ func (p *Path) MoveTo(x, y float32) {
 
 func (p *Path) LineTo(x, y float32) {
 	C.sk_path_line_to(p.ptr, C.float(x), C.float(y))
+}
+
+func (p *Path) ArcTo(x1, y1, x2, y2, radius float32) {
+	C.sk_path_arc_to(p.ptr, C.float(x1), C.float(y1), C.float(x2), C.float(y2), C.float(radius))
+}
+
+func (p *Path) Arc(x, y, r, sAngle, eAngle float32, counterclockwise bool) {
+	oval := NewRect(x-r, y-r, x+r, y+r)
+	if counterclockwise {
+		sAngle, eAngle = eAngle, sAngle
+	}
+	sweepAngle := eAngle - sAngle
+	C.sk_path_add_arc(p.ptr, oval.cPointer(), C.float(sAngle) * radian2degrees, C.float(sweepAngle) * radian2degrees)
 }
 
 func (p *Path) QuadTo(x0, y0, x1, y1 float32) {

@@ -34,6 +34,12 @@ SK_API void sk_path_move_to(sk_path_t*, float x, float y);
 */
 SK_API void sk_path_line_to(sk_path_t*, float x, float y);
 /**
+    Add a line from the last point to the specified point (x,y). If no
+    sk_path_move_to() call has been made for this contour, the first
+    point is automatically set to (0,0).
+*/
+SK_API void sk_path_arc_to(sk_path_t* cpath, float x1, float y1, float x2, float y2, float radius);
+/**
     Add a quadratic bezier from the last point, approaching control
     point (x0,y0), and ending at (x1,y1). If no sk_path_move_to() call
     has been made for this contour, the first point is automatically
@@ -53,10 +59,7 @@ SK_API void sk_path_conic_to(sk_path_t*, float x0, float y0, float x1, float y1,
     sk_path_move_to() call has been made for this contour, the first
     point is automatically set to (0,0).
 */
-SK_API void sk_path_cubic_to(sk_path_t*,
-                             float x0, float y0,
-                             float x1, float y1,
-                             float x2, float y2);
+SK_API void sk_path_cubic_to(sk_path_t*, float x0, float y0, float x1, float y1, float x2, float y2);
 /**
    Close the current contour. If the current point is not equal to the
    first point of the contour, a line segment is automatically added.
@@ -67,6 +70,12 @@ SK_API void sk_path_close(sk_path_t*);
     Add a closed rectangle contour to the path.
 */
 SK_API void sk_path_add_rect(sk_path_t*, const sk_rect_t*, sk_path_direction_t);
+
+/**
+    Add a closed arc to the path.
+*/
+SK_API void sk_path_add_arc(sk_path_t* cpath, const sk_rect_t* oval, float startAngle, float sweepAngle);
+
 /**
     Add a closed oval contour to the path
 */
