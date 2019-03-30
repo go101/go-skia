@@ -1,4 +1,6 @@
 /*
+ * Copyright 2019 Tapir Liu.
+ *
  * Copyright 2015 Google Inc.
  *
  * Use of this source code is governed by a BSD-style license that can be
@@ -120,8 +122,6 @@ type Canvas struct {
 	keepParentAlive *Surface
 }
 
-
-
 func (c *Canvas) Save() {
 	C.sk_canvas_save(c.ptr)
 }
@@ -229,7 +229,7 @@ func (p *Path) Arc(x, y, r, sAngle, eAngle float32, counterclockwise bool) {
 		sAngle, eAngle = eAngle, sAngle
 	}
 	sweepAngle := eAngle - sAngle
-	C.sk_path_add_arc(p.ptr, oval.cPointer(), C.float(sAngle) * radian2degrees, C.float(sweepAngle) * radian2degrees)
+	C.sk_path_add_arc(p.ptr, oval.cPointer(), C.float(sAngle)*radian2degrees, C.float(sweepAngle)*radian2degrees)
 }
 
 func (p *Path) QuadTo(x0, y0, x1, y1 float32) {
@@ -269,7 +269,7 @@ func (i *ImageInfo) cPointer() *C.sk_imageinfo_t {
 }
 
 // Utility functions.
-func GetDefaultColortype() ColorType{
+func GetDefaultColortype() ColorType {
 	//return ColorType(C.sk_colortype_get_default_8888())
 	return RGBA_8888_COLORTYPE
 }

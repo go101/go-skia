@@ -12,28 +12,42 @@ package skia
 // This file is used to generate 'types.go'
 // from the corresponding type definitions in the C API.
 // Any C struct for which we would like to generate a
-// Go struct with the same memory layout should be defined here.
+// Go struct with the same memory layout should defined defined here.
 // Any enum that is used in Go should also be listed here, together
 // with the enum values that we want to use.
 
 /*
-#cgo CFLAGS: -I../../include/c
-#include "../../include/c/sk_types.h"
+
+Run the following commands to create the "types.go" file.
+The purpose of this file is to have Go structs with the same memory
+layout as their C counterparts. For enums we want the underlying primitive
+types to match.
+
+      cat credit > types.go
+      echo -e "\n// Please see file "ctypes.go" on how this file is created.\n" >> types.go
+      go tool cgo -godefs ctypes.go >> types.go
+
+Some enum fields in structs need to be fixed by hand.
+
+TODO(stephan): Add tests that allow to detect failure on platforms other
+               than Linux and changes in the underlying C types.
+*/
+
+/*
+#cgo CFLAGS: -Iskia/include/c
+#include "skia/include/c/sk_types.h"
 */
 import "C"
 
 type Color C.sk_color_t
 
-type ColorType C.enum_sk_colortype_t
+type ColorType C.sk_colortype_t
 
 const (
 	UNKNOWN_COLORTYPE   ColorType = C.UNKNOWN_SK_COLORTYPE
 	RGBA_8888_COLORTYPE ColorType = C.RGBA_8888_SK_COLORTYPE
 	BGRA_8888_COLORTYPE ColorType = C.BGRA_8888_SK_COLORTYPE
 	ALPHA_8_COLORTYPE   ColorType = C.ALPHA_8_SK_COLORTYPE
-	GRAY_8_COLORTYPE    ColorType = C.GRAY_8_SK_COLORTYPE
-	RGBA_F16_COLORTYPE  ColorType = C.RGBA_F16_SK_COLORTYPE
-	RGBA_F32_COLORTYPE  ColorType = C.RGBA_F32_SK_COLORTYPE
 )
 
 type AlphaType C.sk_alphatype_t
