@@ -47,7 +47,7 @@ SK_API void sk_canvas_save_layer(sk_canvas_t*, const sk_rect_t*, const sk_paint_
     sk_canvas_save_layer(), and is used to remove all modifications to
     the matrix and clip state since the last save call.  It is an
     error to call sk_canvas_restore() more times than save and
-    save_layer were called.
+    save_layer were called. (? C++ docs says it does nothing instead of error).
 */
 SK_API void sk_canvas_restore(sk_canvas_t*);
 
@@ -116,19 +116,19 @@ SK_API void sk_canvas_draw_rect(sk_canvas_t*, const sk_rect_t*, const sk_paint_t
 
 /**
  *  Draw the circle centered at (cx, cy) with radius rad using the specified paint.
- *  The circle will be filled or framed based on the style in the paint
+ *  The circle will be filled or framed based on the style in the paint.
  */
 SK_API void sk_canvas_draw_circle(sk_canvas_t*, float cx, float cy, float rad, const sk_paint_t*);
 
 /**
     Draw the specified oval using the specified paint. The oval will be
-    filled or framed based on the style in the paint
+    filled or framed based on the style in the paint.
 */
 SK_API void sk_canvas_draw_oval(sk_canvas_t*, const sk_rect_t*, const sk_paint_t*);
 
 /**
     Draw the specified path using the specified paint. The path will be
-    filled or framed based on the style in the paint
+    filled or framed based on the style in the paint.
 */
 SK_API void sk_canvas_draw_path(sk_canvas_t*, const sk_path_t*, const sk_paint_t*);
 

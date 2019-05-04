@@ -39,6 +39,11 @@ TODO(stephan): Add tests that allow to detect failure on platforms other
 */
 import "C"
 
+// todo: change enum constant names, such as
+// * CW_SK_PATH_DIRECTION
+// * UNKNOWN_SK_COLORTYPE
+// * ...
+
 type Color C.sk_color_t
 
 type ColorType C.sk_colortype_t

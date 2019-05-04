@@ -45,7 +45,7 @@ SK_API void sk_path_move_to(sk_path_t*, float x, float y);
 SK_API void sk_path_line_to(sk_path_t*, float x, float y);
 
 /**
-    Add a line from the last point to the specified point (x,y). If no
+    Add an oval arc from the last point to the specified point (x,y). If no
     sk_path_move_to() call has been made for this contour, the first
     point is automatically set to (0,0).
 */
@@ -87,7 +87,7 @@ SK_API void sk_path_close(sk_path_t*);
 SK_API void sk_path_add_rect(sk_path_t*, const sk_rect_t*, sk_path_direction_t);
 
 /**
-    Add a closed arc to the path.
+    Add an oval arc to the path.
 */
 SK_API void sk_path_add_arc(sk_path_t* cpath, const sk_rect_t* oval, float startAngle, float sweepAngle);
 
