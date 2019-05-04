@@ -27,7 +27,9 @@ types to match.
       echo -e "\n// Please see file "ctypes.go" on how this file is created.\n" >> types.go
       go tool cgo -godefs ctypes.go >> types.go
 
-Some enum fields in structs need to be fixed by hand.
+Some enum fields in structs need to be fixed by hand. For example,
+* ColorType	ColorType
+* AlphaType	AlphaType
 
 TODO(stephan): Add tests that allow to detect failure on platforms other
                than Linux and changes in the underlying C types.
@@ -46,31 +48,31 @@ import "C"
 
 type Color C.sk_color_t
 
-type ColorType C.sk_colortype_t
+type ColorType C.sk_color_type_t
 
 const (
-	UNKNOWN_COLORTYPE   ColorType = C.UNKNOWN_SK_COLORTYPE
-	RGBA_8888_COLORTYPE ColorType = C.RGBA_8888_SK_COLORTYPE
-	BGRA_8888_COLORTYPE ColorType = C.BGRA_8888_SK_COLORTYPE
-	ALPHA_8_COLORTYPE   ColorType = C.ALPHA_8_SK_COLORTYPE
+	UNKNOWN_COLORTYPE   ColorType = C.Unknown_SkColorType
+	RGBA_8888_COLORTYPE ColorType = C.RGBA_8888_SkColorType
+	BGRA_8888_COLORTYPE ColorType = C.BGRA_8888_SkColorType
+	ALPHA_8_COLORTYPE   ColorType = C.Alpha_8_SkColorType
 )
 
-type AlphaType C.sk_alphatype_t
+type AlphaType C.sk_alpha_type_t
 
 const (
-	OPAQUE_ALPHATYPE   AlphaType = C.OPAQUE_SK_ALPHATYPE
-	PREMUL_ALPHATYPE   AlphaType = C.PREMUL_SK_ALPHATYPE
-	UNPREMUL_ALPHATYPE AlphaType = C.UNPREMUL_SK_ALPHATYPE
+	OPAQUE_ALPHATYPE   AlphaType = C.Opaque_SkAlphaType
+	PREMUL_ALPHATYPE   AlphaType = C.Premul_SkAlphaType
+	UNPREMUL_ALPHATYPE AlphaType = C.Unpremul_SkAlphaType
 )
 
-type PixelGeometry C.sk_pixelgeometry_t
+type PixelGeometry C.sk_pixel_geometry_t
 
 const (
-	UNKNOWN_SK_PIXELGEOMETRY PixelGeometry = C.UNKNOWN_SK_PIXELGEOMETRY
-	RGB_H_SK_PIXELGEOMETRY   PixelGeometry = C.RGB_H_SK_PIXELGEOMETRY
-	BGR_H_SK_PIXELGEOMETRY   PixelGeometry = C.BGR_H_SK_PIXELGEOMETRY
-	RGB_V_SK_PIXELGEOMETRY   PixelGeometry = C.RGB_V_SK_PIXELGEOMETRY
-	BGR_V_SK_PIXELGEOMETRY   PixelGeometry = C.BGR_V_SK_PIXELGEOMETRY
+	UNKNOWN_SK_PIXELGEOMETRY PixelGeometry = C.Unknown_SkPixelGeometry
+	RGB_H_SK_PIXELGEOMETRY   PixelGeometry = C.RGB_H_SkPixelGeometry
+	BGR_H_SK_PIXELGEOMETRY   PixelGeometry = C.BGR_H_SkPixelGeometry
+	RGB_V_SK_PIXELGEOMETRY   PixelGeometry = C.RGB_V_SkPixelGeometry
+	BGR_V_SK_PIXELGEOMETRY   PixelGeometry = C.BGR_V_SkPixelGeometry
 )
 
 type ImageInfo C.sk_imageinfo_t

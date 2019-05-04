@@ -97,41 +97,29 @@ SK_API float sk_paint_get_stroke_miter(const sk_paint_t*);
 */
 SK_API void sk_paint_set_stroke_miter(sk_paint_t*, float miter);
 
-typedef enum {
-    BUTT_SK_STROKE_CAP,
-    ROUND_SK_STROKE_CAP,
-    SQUARE_SK_STROKE_CAP
-} sk_stroke_cap_t;
-
 /**
     Return the paint's stroke cap type, controlling how the start and
     end of stroked lines and paths are treated.
 */
-SK_API sk_stroke_cap_t sk_paint_get_stroke_cap(const sk_paint_t*);
+SK_API sk_paint_stroke_cap_t sk_paint_get_stroke_cap(const sk_paint_t*);
 
 /**
     Set the paint's stroke cap type, controlling how the start and
     end of stroked lines and paths are treated.
 */
-SK_API void sk_paint_set_stroke_cap(sk_paint_t*, sk_stroke_cap_t);
-
-typedef enum {
-    MITER_SK_STROKE_JOIN,
-    ROUND_SK_STROKE_JOIN,
-    BEVEL_SK_STROKE_JOIN
-} sk_stroke_join_t;
+SK_API void sk_paint_set_stroke_cap(sk_paint_t*, sk_paint_stroke_cap_t);
 
 /**
     Return the paint's stroke join type, specifies the treatment that
     is applied to corners in paths and rectangles
 */
-SK_API sk_stroke_join_t sk_paint_get_stroke_join(const sk_paint_t*);
+SK_API sk_paint_stroke_join_t sk_paint_get_stroke_join(const sk_paint_t*);
 
 /**
     Set the paint's stroke join type, specifies the treatment that
     is applied to corners in paths and rectangles
 */
-SK_API void sk_paint_set_stroke_join(sk_paint_t*, sk_stroke_join_t);
+SK_API void sk_paint_set_stroke_join(sk_paint_t*, sk_paint_stroke_join_t);
 
 /**
     Set the paint's shader to the specified parameter. This will automatically call unref() on

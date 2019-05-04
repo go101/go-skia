@@ -82,7 +82,7 @@ func run() int {
 			// needed?
 			sdlSurface.Lock()
 			defer sdlSurface.Unlock()
-			
+
 			fillPaint := skia.NewPaint()
 			fillPaint.SetColor(0xFF0000FF)
 			canvas.DrawPaint(fillPaint)
@@ -90,8 +90,8 @@ func run() int {
 			fillPaint.SetAntiAlias(true)
 			//fillPaint.SetStroke(true)
 
-			rect := skia.NewRect(100, 100, 540, 380)
-			canvas.DrawRect(rect, fillPaint)
+			rect := skia.Rect{100, 100, 540, 380}
+			canvas.DrawRect(&rect, fillPaint)
 
 			strokePaint := skia.NewPaint()
 			strokePaint.SetColor(0xFFFF0000)
@@ -107,7 +107,7 @@ func run() int {
 			canvas.DrawPath(path, strokePaint)
 
 			fillPaint.SetColor(0x8000FF00)
-			canvas.DrawOval(skia.NewRect(120, 120, 520, 360), fillPaint)
+			canvas.DrawOval(&skia.Rect{120, 120, 520, 360}, fillPaint)
 
 			fillPaint.SetColor(0x80FF00FF)
 			radius += 0.1

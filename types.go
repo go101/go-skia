@@ -19,44 +19,44 @@ type Color uint32
 type ColorType uint32
 
 const (
-	UNKNOWN_COLORTYPE   ColorType = 0x0
-	RGBA_8888_COLORTYPE ColorType = 0x1
-	BGRA_8888_COLORTYPE ColorType = 0x2
-	ALPHA_8_COLORTYPE   ColorType = 0x3
+	UNKNOWN_COLORTYPE	ColorType	= 0x0
+	RGBA_8888_COLORTYPE	ColorType	= 0x4
+	BGRA_8888_COLORTYPE	ColorType	= 0x6
+	ALPHA_8_COLORTYPE	ColorType	= 0x1
 )
 
 type AlphaType uint32
 
 const (
-	OPAQUE_ALPHATYPE   AlphaType = 0x0
-	PREMUL_ALPHATYPE   AlphaType = 0x1
-	UNPREMUL_ALPHATYPE AlphaType = 0x2
+	OPAQUE_ALPHATYPE	AlphaType	= 0x1
+	PREMUL_ALPHATYPE	AlphaType	= 0x2
+	UNPREMUL_ALPHATYPE	AlphaType	= 0x3
 )
 
 type PixelGeometry uint32
 
 const (
-	UNKNOWN_SK_PIXELGEOMETRY PixelGeometry = 0x0
-	RGB_H_SK_PIXELGEOMETRY   PixelGeometry = 0x1
-	BGR_H_SK_PIXELGEOMETRY   PixelGeometry = 0x2
-	RGB_V_SK_PIXELGEOMETRY   PixelGeometry = 0x3
-	BGR_V_SK_PIXELGEOMETRY   PixelGeometry = 0x4
+	UNKNOWN_SK_PIXELGEOMETRY	PixelGeometry	= 0x0
+	RGB_H_SK_PIXELGEOMETRY		PixelGeometry	= 0x1
+	BGR_H_SK_PIXELGEOMETRY		PixelGeometry	= 0x2
+	RGB_V_SK_PIXELGEOMETRY		PixelGeometry	= 0x3
+	BGR_V_SK_PIXELGEOMETRY		PixelGeometry	= 0x4
 )
 
 type ImageInfo struct {
-	Width     int32
-	Height    int32
-	ColorType ColorType
-	AlphaType AlphaType
+	Width		int32
+	Height		int32
+	ColorType	ColorType
+	AlphaType	AlphaType
 }
 
 type SurfaceProps struct {
-	PixelGeometry PixelGeometry
+	PixelGeometry uint32
 }
 
 type Rect struct {
-	Left   float32
-	Top    float32
-	Right  float32
-	Bottom float32
+	Left	float32
+	Top	float32
+	Right	float32
+	Bottom	float32
 }

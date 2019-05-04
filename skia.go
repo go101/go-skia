@@ -22,12 +22,23 @@ package skia
 #cgo CFLAGS: -I./skia/include/c
 #include "sk_canvas.h"
 #include "sk_data.h"
+#include "sk_effects.h"
 #include "sk_image.h"
+#include "sk_maskfilter.h"
+//#include "sk_matrix.h"
 #include "sk_paint.h"
 #include "sk_path.h"
+#include "sk_picture.h"
 #include "sk_surface.h"
+// #incldue "sk_types.h" // already included indrectly
 */
 import "C"
+
+
+
+
+
+
 
 import (
 	"fmt"
@@ -51,7 +62,7 @@ type Surface struct {
 
 // NewRasterSurface creates a new Surface, with the properties specified
 // by imgInfo, and with the memory for the pixels automatically allocated.
-func NewRasterSurface(imgInfo ImageInfo) (*Surface, error) {
+func NewRasterSurface(imgInfo *ImageInfo) (*Surface, error) {
 	ptr := C.sk_surface_new_raster(imgInfo.cPointer(), (*C.sk_surfaceprops_t)(nil))
 	if ptr == nil {
 		return nil, fmt.Errorf("Unable to create raster surface.")
@@ -70,7 +81,7 @@ func NewRasterSurface(imgInfo ImageInfo) (*Surface, error) {
 // by rowbytes, and with the properties specified by imgInfo,
 // NOTE, it is the caller's duty to ensure the memory is still alive during
 // the lifetime of the returned Surface.
-func NewDirectRasterSurface(imgInfo ImageInfo, pixels uintptr, rowBytes int) (*Surface, error) {
+func NewDirectRasterSurface(imgInfo *ImageInfo, pixels uintptr, rowBytes int) (*Surface, error) {
 	ptr := C.sk_surface_new_raster_direct(imgInfo.cPointer(), unsafe.Pointer(pixels), C.size_t(rowBytes), (*C.sk_surfaceprops_t)(nil))
 	if ptr == nil {
 		return nil, fmt.Errorf("Unable to create direct raster surface.")
@@ -195,14 +206,14 @@ func (c *Canvas) DrawCircle(cx, cy, r float32, paint *Paint) {
 
 // DrawOval draws an oval with the specified paint. The oval, which is bounded
 // in rect,  will be filled or stroked based on the style in the specified paint.
-func (c *Canvas) DrawOval(rect Rect, paint *Paint) {
+func (c *Canvas) DrawOval(rect *Rect, paint *Paint) {
 	// C.sk_canvas_draw_oval(c.ptr, (*C.sk_rect_t)(unsafe.Pointer(rect)), (*C.sk_paint_t)(paint.ptr))
 	C.sk_canvas_draw_oval(c.ptr, rect.cPointer(), paint.ptr)
 }
 
 // DrawRect draws a rectangle with the specified paint. The rectangle
 // will be filled or stroked based on the style in the specified paint.
-func (c *Canvas) DrawRect(rect Rect, paint *Paint) {
+func (c *Canvas) DrawRect(rect *Rect, paint *Paint) {
 	// C.sk_canvas_draw_rect(c.ptr, (*C.sk_rect_t)(unsafe.Pointer(rect)), (*C.sk_paint_t)(paint.ptr))
 	C.sk_canvas_draw_rect(c.ptr, rect.cPointer(), paint.ptr)
 }
@@ -401,6 +412,16 @@ func (r *Rect) cPointer() *C.sk_rect_t {
 func (i *ImageInfo) cPointer() *C.sk_imageinfo_t {
 	return (*C.sk_imageinfo_t)(unsafe.Pointer(i))
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
