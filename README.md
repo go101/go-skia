@@ -7,7 +7,7 @@ If your project supports Go modules, then the import path is `go101.org/go-skia`
 and please remember add the following line in your `go.mod` file.
 
 ```
-replace go101.org/go-skia => github.com/go-gfx/go-skia latest
+replace go101.org/go-skia => github.com/go-gfx/go-skia v0.0.1
 ```
 
 The current skia libraries are built from skia C++ repository
