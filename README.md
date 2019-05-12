@@ -8,7 +8,7 @@ and please remember add the following line in your `go.mod` file manually.
 (`go get github.com/go-gfx/go-skia` doesn't work.)
 
 ```
-replace go101.org/go-skia => github.com/go-gfx/go-skia latest
+replace go101.org/go-skia => github.com/go-gfx/go-skia v0.0.1
 ```
 
 The current skia static library is built from [the skia fork](https://github.com/go-graphics/skia),
