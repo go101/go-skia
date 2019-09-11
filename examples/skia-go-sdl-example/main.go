@@ -18,7 +18,7 @@ import (
 	"reflect"
 	"unsafe"
 
-	"go101.org/go-skia"
+	"go101.org/skia"
 	"github.com/veandco/go-sdl2/sdl"
 )
 

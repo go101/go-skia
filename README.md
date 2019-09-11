@@ -1,15 +1,9 @@
 **go-skia** is a Go skia binding based on skia C library through cgo.
 
-Note: the project is still in early stage, and it only supports Linux now. 
+Note: the project is still in early stage, and it only supports Linux-amd64 now. 
 The next release (in developing) will be much more mature.
 
-If your project supports Go modules, then the import path is `go101.org/go-skia`,
-and please remember add the following line in your `go.mod` file manually.
-(`go get github.com/go-gfx/go-skia` doesn't work.)
-
-```
-replace go101.org/go-skia => github.com/go-gfx/go-skia v0.0.1
-```
+If your project supports Go modules, then the import path is `go101.org/skia`.
 
 The current skia static library is built from [the skia fork](https://github.com/go-graphics/skia),
 which forked from skia C++ repository revision 8534723c7be1c079711d8bac45e93728d6524f8a.
