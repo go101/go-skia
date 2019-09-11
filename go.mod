@@ -1,3 +1,2 @@
-module go101.org/go-skia
+module go101.org/skia
 
-go 1.12

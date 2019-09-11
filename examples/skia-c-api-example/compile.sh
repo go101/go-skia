@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc ./*.c ../../skia/lib/static/libskia.* \
+gcc ./*.c ../../skia/lib/static/linux/amd64/libskia.* \
 	-o skia-c-example \
 	-I ../../skia/include/c \
 	-Wl,-rpath,../../skia/out/static \

@@ -1,5 +1,0 @@
-github.com/go-gfx/gl v0.0.0-20181026044259-55b76b7df9d2/go.mod h1:oDTSRlgerFXOWyveaWZ56eUtUVqzUFySc1OvbhZBTv4=
-github.com/go-gfx/go-sdl2 v0.3.0/go.mod h1:QWu/BGRIa8ALCG/hprTMG5lyywAVimM0tBYzK/xKzIA=
-github.com/go-gfx/gogl v0.0.0-20131111203533-c411acc846b6/go.mod h1:A6maRk2bQN/aA/ODCQI0vonm9zO/8KFgCbR3QwrFseE=
-github.com/go101/tinyrouter v1.0.1 h1:Gs64qIp5SqVokTxnK43o0Zz7nlogLjWdi3ETmf8OXLI=
-github.com/go101/tinyrouter v1.0.1/go.mod h1:YBdGKABkja09pNOpnSfLf+QrW4O2w75CV1P1ffM93go=

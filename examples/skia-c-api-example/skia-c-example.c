@@ -17,8 +17,8 @@ static sk_surface_t* make_surface(int32_t w, int32_t h) {
     sk_imageinfo_t info;
     info.width = w;
     info.height = h;
-    info.colorType = RGBA_8888_SK_COLORTYPE; // sk_colortype_get_default_8888();
-    info.alphaType = PREMUL_SK_ALPHATYPE;
+    info.colorType = RGBA_8888_SkColorType; // sk_colortype_get_default_8888();
+    info.alphaType = Premul_SkAlphaType;
     return sk_surface_new_raster(&info, NULL);
 }
 

@@ -1,4 +1,6 @@
 /*
+ * Copyright 2019 Tapir Liu.
+ *
  * Copyright 2014 Google Inc.
  *
  * Use of this source code is governed by a BSD-style license that can be
@@ -13,12 +15,6 @@
 
 #include "sk_types.h"
 
-typedef enum {
-    NORMAL_SK_BLUR_STYLE,   //!< fuzzy inside and outside
-    SOLID_SK_BLUR_STYLE,    //!< solid inside, fuzzy outside
-    OUTER_SK_BLUR_STYLE,    //!< nothing inside, fuzzy outside
-    INNER_SK_BLUR_STYLE,    //!< fuzzy inside, nothing outside
-} sk_blurstyle_t;
 
 SK_C_PLUS_PLUS_BEGIN_GUARD
 
@@ -37,10 +33,10 @@ void sk_maskfilter_unref(sk_maskfilter_t*);
 
 /**
     Create a blur maskfilter.
-    @param sk_blurstyle_t The SkBlurStyle to use
+    @param sk_blur_style_t The SkBlurStyle to use
     @param sigma Standard deviation of the Gaussian blur to apply. Must be > 0.
 */
-sk_maskfilter_t* sk_maskfilter_new_blur(sk_blurstyle_t, float sigma);
+sk_maskfilter_t* sk_maskfilter_new_blur(sk_blur_style_t, float sigma);
 
 SK_C_PLUS_PLUS_END_GUARD
 

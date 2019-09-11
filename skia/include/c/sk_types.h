@@ -1,4 +1,6 @@
 /*
+ * Copyright 2019 Tapir Liu.
+ *
  * Copyright 2014 Google Inc.
  *
  * Use of this source code is governed by a BSD-style license that can be
@@ -52,52 +54,247 @@ typedef uint32_t sk_color_t;
 #define sk_color_get_g(c)               (((c) >>  8) & 0xFF)
 #define sk_color_get_b(c)               (((c) >>  0) & 0xFF)
 
-typedef enum {
-    UNKNOWN_SK_COLORTYPE,
-    RGBA_8888_SK_COLORTYPE,
-    BGRA_8888_SK_COLORTYPE,
-    ALPHA_8_SK_COLORTYPE,
-} sk_colortype_t;
+
+#undef ENUM_ITEM
+#undef ENUM_ITEM_WITH_VALUE
+#undef ENUM_ITEM_NO_CLASS
+#undef ENUM_ITEM_WITH_VALUE_NO_CLASS
+#undef ENUM_ITEM_2
+
+#define ENUM_ITEM(skclass, item) skclass ## _ ## item,
+#define ENUM_ITEM_WITH_VALUE(skclass, item, value) skclass ## _ ## item = (value),
+#define ENUM_ITEM_NO_CLASS(item) item,
+#define ENUM_ITEM_WITH_VALUE_NO_CLASS(item, value) item = (value),
+#define ENUM_ITEM_2(skclass, item) skclass ## _ ## item,
+// The last one is for "enum class".
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PATH_FILL_TYPE_ENUM_ITEMS \
+    ENUM_ITEM(Path, Winding_FillType) \
+    ENUM_ITEM(Path, EvenOdd_FillType) \
+    ENUM_ITEM(Path, InverseWinding_FillType) \
+    ENUM_ITEM(Path, InverseEvenOdd_FillType) \
 
 typedef enum {
-    OPAQUE_SK_ALPHATYPE,
-    PREMUL_SK_ALPHATYPE,
-    UNPREMUL_SK_ALPHATYPE,
-} sk_alphatype_t;
+    PATH_FILL_TYPE_ENUM_ITEMS
+} sk_path_fill_type_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PATH_CONVEXITY_ENUM_ITEMS \
+    ENUM_ITEM(Path, Unknown_Convexity) \
+    ENUM_ITEM(Path, Convex_Convexity) \
+    ENUM_ITEM(Path, Concave_Convexity) \
 
 typedef enum {
-    INTERSECT_SK_CLIPTYPE,
-    DIFFERENCE_SK_CLIPTYPE,
-} sk_cliptype_t;
+    PATH_CONVEXITY_ENUM_ITEMS
+} sk_path_convexity_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PATH_ARC_SIZE_ENUM_ITEMS \
+    ENUM_ITEM(Path, Small_ArcSize) \
+    ENUM_ITEM(Path, Large_ArcSize) \
 
 typedef enum {
-    UNKNOWN_SK_PIXELGEOMETRY,
-    RGB_H_SK_PIXELGEOMETRY,
-    BGR_H_SK_PIXELGEOMETRY,
-    RGB_V_SK_PIXELGEOMETRY,
-    BGR_V_SK_PIXELGEOMETRY,
-} sk_pixelgeometry_t;
+    PATH_ARC_SIZE_ENUM_ITEMS
+} sk_path_arc_size_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PATH_DIRECTION_ENUM_ITEMS \
+    ENUM_ITEM(Path, CW_Direction) \
+    ENUM_ITEM(Path, CCW_Direction) \
+
+typedef enum {
+    PATH_DIRECTION_ENUM_ITEMS
+} sk_path_direction_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PATH_APPEND_PATH_MODE_ENUM_ITEMS \
+    ENUM_ITEM(Path, Append_AddPathMode) \
+    ENUM_ITEM(Path, Extend_AddPathMode) \
+
+typedef enum {
+    PATH_APPEND_PATH_MODE_ENUM_ITEMS
+} sk_path_add_path_mode_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PATH_SEGMENT_MASK_ENUM_ITEMS \
+    ENUM_ITEM_WITH_VALUE(Path, Line_SegmentMask, 1 << 0) \
+    ENUM_ITEM_WITH_VALUE(Path, Quad_SegmentMask, 1 << 1) \
+    ENUM_ITEM_WITH_VALUE(Path, Conic_SegmentMask, 1 << 2) \
+    ENUM_ITEM_WITH_VALUE(Path, Cubic_SegmentMask, 1 << 3) \
+
+typedef enum {
+    PATH_SEGMENT_MASK_ENUM_ITEMS
+} sk_path_segment_mask_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PAINT_STROKE_CAP_ENUM_ITEMS \
+    ENUM_ITEM(Paint, Butt_Cap) \
+    ENUM_ITEM(Paint, Round_Cap) \
+    ENUM_ITEM(Paint, Square_Cap) \
+    ENUM_ITEM_WITH_VALUE(Paint, Last_Cap, Paint_Square_Cap) \
+    ENUM_ITEM_WITH_VALUE(Paint, Default_Cap, Paint_Butt_Cap) \
+
+typedef enum {
+    PAINT_STROKE_CAP_ENUM_ITEMS
+} sk_paint_stroke_cap_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PAINT_STROKE_JOIN_ENUM_ITEMS \
+    ENUM_ITEM(Paint, Miter_Join) \
+    ENUM_ITEM(Paint, Round_Join) \
+    ENUM_ITEM(Paint, Bevel_Join) \
+    ENUM_ITEM_WITH_VALUE(Paint, Last_Join, Paint_Bevel_Join) \
+    ENUM_ITEM_WITH_VALUE(Paint, Default_Join, Paint_Miter_Join) \
+
+typedef enum {
+    PAINT_STROKE_JOIN_ENUM_ITEMS
+} sk_paint_stroke_join_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define SHADER_TILE_MODE_ENUM_ITEMS \
+    ENUM_ITEM(Shader, Clamp_TileMode) \
+    ENUM_ITEM(Shader, Repeat_TileMode) \
+    ENUM_ITEM(Shader, Mirror_TileMode) \
+
+typedef enum {
+    SHADER_TILE_MODE_ENUM_ITEMS
+} sk_shader_tile_mode_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define BLUR_STYLE_ENUM_ITEMS \
+    ENUM_ITEM_NO_CLASS(Normal_SkBlurStyle) \
+    ENUM_ITEM_NO_CLASS(Solid_SkBlurStyle) \
+    ENUM_ITEM_NO_CLASS(Outer_SkBlurStyle) \
+    ENUM_ITEM_NO_CLASS(Inner_SkBlurStyle) \
+    \
+    ENUM_ITEM_WITH_VALUE_NO_CLASS(LastEnum_SkBlurStyle, Inner_SkBlurStyle) \
+
+typedef enum {
+    BLUR_STYLE_ENUM_ITEMS
+} sk_blur_style_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define IMAGEINFO_COLOR_TYPE_ENUM_ITEMS \
+    ENUM_ITEM_NO_CLASS(Unknown_SkColorType) \
+    ENUM_ITEM_NO_CLASS(Alpha_8_SkColorType) \
+    ENUM_ITEM_NO_CLASS(RGB_565_SkColorType) \
+    ENUM_ITEM_NO_CLASS(ARGB_4444_SkColorType) \
+    ENUM_ITEM_NO_CLASS(RGBA_8888_SkColorType) \
+    ENUM_ITEM_NO_CLASS(RGB_888x_SkColorType) \
+    ENUM_ITEM_NO_CLASS(BGRA_8888_SkColorType) \
+    ENUM_ITEM_NO_CLASS(RGBA_1010102_SkColorType) \
+    ENUM_ITEM_NO_CLASS(RGB_101010x_SkColorType) \
+    ENUM_ITEM_NO_CLASS(Gray_8_SkColorType) \
+    ENUM_ITEM_NO_CLASS(RGBA_F16_SkColorType) \
+    ENUM_ITEM_NO_CLASS(RGBA_F32_SkColorType) \
+    \
+    ENUM_ITEM_WITH_VALUE_NO_CLASS(LastEnum_SkColorType, RGBA_F32_SkColorType) \
+    // ENUM_ITEM_WITH_VALUE_NO_CLASS(N32_SkColorType, N32_SkColorType_Value) \
+// N32_SkColorType needs to include
+// #include "SkPreConfig.h"
+// #include "SkUserConfig.h"
+// #include "SkPostConfig.h"
+
+
+typedef enum {
+    IMAGEINFO_COLOR_TYPE_ENUM_ITEMS
+} sk_color_type_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define IMAGEINFO_ALPHA_TYPE_ENUM_ITEMS \
+    ENUM_ITEM_NO_CLASS(Unknown_SkAlphaType) \
+    ENUM_ITEM_NO_CLASS(Opaque_SkAlphaType) \
+    ENUM_ITEM_NO_CLASS(Premul_SkAlphaType) \
+    ENUM_ITEM_NO_CLASS(Unpremul_SkAlphaType) \
+    \
+    ENUM_ITEM_WITH_VALUE_NO_CLASS(LastEnum_SkAlphaType, Unpremul_SkAlphaType) \
+
+typedef enum {
+    IMAGEINFO_ALPHA_TYPE_ENUM_ITEMS
+} sk_alpha_type_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define CLIP_OP_ENUM_ITEMS \
+    ENUM_ITEM_2(ClipOp, Difference) \
+    ENUM_ITEM_2(ClipOp, Intersect) \
+
+typedef enum {
+    CLIP_OP_ENUM_ITEMS
+} sk_clip_op_t;
+
+
+// NOTE: remember use this macro to check c-2-sk
+// enum value equivalences in "sk_types_priv.h".
+#define PIXEL_GEOMETRY_ENUM_ITEMS \
+    ENUM_ITEM_NO_CLASS(Unknown_SkPixelGeometry) \
+    ENUM_ITEM_NO_CLASS(RGB_H_SkPixelGeometry) \
+    ENUM_ITEM_NO_CLASS(BGR_H_SkPixelGeometry) \
+    ENUM_ITEM_NO_CLASS(RGB_V_SkPixelGeometry) \
+    ENUM_ITEM_NO_CLASS(BGR_V_SkPixelGeometry) \
+
+typedef enum {
+    PIXEL_GEOMETRY_ENUM_ITEMS
+} sk_pixel_geometry_t;
+
+
+
+#undef ENUM_ITEM
+#undef ENUM_ITEM_WITH_VALUE
+#undef ENUM_ITEM_NO_CLASS
+#undef ENUM_ITEM_WITH_VALUE_NO_CLASS
+#undef ENUM_ITEM_2
+
+
+
 
 /**
-    Return the default sk_colortype_t; this is operating-system dependent.
+    Return the default sk_color_type_t; this is operating-system dependent.
 */
-SK_API sk_colortype_t sk_colortype_get_default_8888(void);
+SK_API sk_color_type_t sk_colortype_get_default_8888(void);
 
 typedef struct {
-    int32_t         width;
-    int32_t         height;
-    sk_colortype_t  colorType;
-    sk_alphatype_t  alphaType;
+    int32_t  width;
+    int32_t  height;
+    sk_color_type_t  colorType;
+    sk_alpha_type_t  alphaType;
 } sk_imageinfo_t;
 
 typedef struct {
-    sk_pixelgeometry_t pixelGeometry;
+    sk_pixel_geometry_t pixelGeometry;
 } sk_surfaceprops_t;
 
 typedef struct {
     float   x;
     float   y;
 } sk_point_t;
+
+typedef sk_point_t sk_vector_t;
 
 typedef struct {
     int32_t left;
@@ -112,6 +309,17 @@ typedef struct {
     float   right;
     float   bottom;
 } sk_rect_t;
+
+/*
+    sk_rrect_t describes a rounded rectangle with a bounds and a pair of radii for each corner.
+    The bounds and radii can be set so that SkRRect describes: a rectangle with sharp corners;
+    a circle; an oval; or a rectangle with one or more rounded corners.
+*/
+typedef struct {
+    sk_rect_t   fRect;
+    sk_vector_t fRadii[4];
+    int32_t     fType;
+} sk_rrect_t;
 
 /**
     The sk_matrix_t struct holds a 3x3 perspective matrix for
@@ -176,10 +384,12 @@ typedef struct {
     and a stack of matrix/clip values.
 */
 typedef struct sk_canvas_t sk_canvas_t;
+
 /**
     A sk_data_ holds an immutable data buffer.
 */
 typedef struct sk_data_t sk_data_t;
+
 /**
     A sk_image_t is an abstraction for drawing a rectagle of pixels.
     The content of the image is always immutable, though the actual
@@ -187,6 +397,7 @@ typedef struct sk_data_t sk_data_t;
     encoded data or other means.
 */
 typedef struct sk_image_t sk_image_t;
+
 /**
     A sk_maskfilter_t is an object that perform transformations on an
     alpha-channel mask before drawing it; it may be installed into a
@@ -196,27 +407,32 @@ typedef struct sk_image_t sk_image_t;
     destination.
  */
 typedef struct sk_maskfilter_t sk_maskfilter_t;
+
 /**
     A sk_paint_t holds the style and color information about how to
     draw geometries, text and bitmaps.
 */
 typedef struct sk_paint_t sk_paint_t;
+
 /**
     A sk_path_t encapsulates compound (multiple contour) geometric
     paths consisting of straight line segments, quadratic curves, and
     cubic curves.
 */
 typedef struct sk_path_t sk_path_t;
+
 /**
     A sk_picture_t holds recorded canvas drawing commands to be played
     back at a later time.
 */
 typedef struct sk_picture_t sk_picture_t;
+
 /**
     A sk_picture_recorder_t holds a sk_canvas_t that records commands
     to create a sk_picture_t.
 */
 typedef struct sk_picture_recorder_t sk_picture_recorder_t;
+
 /**
     A sk_shader_t specifies the source color(s) for what is being drawn. If a
     paint has no shader, then the paint's color is used. If the paint
@@ -224,6 +440,7 @@ typedef struct sk_picture_recorder_t sk_picture_recorder_t;
     are modulated by the paint's alpha.
 */
 typedef struct sk_shader_t sk_shader_t;
+
 /**
     A sk_surface_t holds the destination for drawing to a canvas. For
     raster drawing, the destination is an array of pixels in memory.

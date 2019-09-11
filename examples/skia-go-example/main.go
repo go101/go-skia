@@ -16,7 +16,7 @@ import (
 	"log"
 	"os"
 
-	skia "go101.org/go-skia"
+	skia "go101.org/skia"
 )
 
 func main() {
@@ -39,7 +39,7 @@ func main() {
 	canvas.DrawPaint(fillPaint)
 	fillPaint.SetColor(0xFF00FFFF)
 
-	rect := skia.NewRect(100, 100, 540, 380)
+	rect := &skia.Rect{100, 100, 540, 380}
 	canvas.DrawRect(rect, fillPaint)
 
 	strokePaint := skia.NewPaint()
@@ -56,11 +56,11 @@ func main() {
 	canvas.DrawPath(path, strokePaint)
 
 	fillPaint.SetColor(0x8000FF00)
-	canvas.DrawOval(skia.NewRect(120, 120, 520, 360), fillPaint)
+	canvas.DrawOval(&skia.Rect{120, 120, 520, 360}, fillPaint)
 	canvas.DrawCircle(320, 240, 200, fillPaint)
 
 	// // Get a skia image from the surface.
-	skImg := surface.Image()
+	skImg := surface.Snapshot()
 
 	// Write new image to file if we have one.
 	if skImg != nil {
